@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gmail AI Platform
 
-## Getting Started
+An AI-powered Gmail productivity platform that combines Gmail integration, Retrieval-Augmented Generation (RAG), AI-powered email assistance, workflow automation, and executive insights into a single modern SaaS application.
 
-First, run the development server:
+---
+
+# Features
+
+## Authentication
+
+* Google OAuth Login
+* Secure Session Management using NextAuth
+
+## Gmail Integration
+
+* Gmail Sync
+* Inbox Management
+* Thread View
+* Search Emails
+* Star Emails
+* Archive Emails
+* Delete Emails
+* AI Reply
+
+## AI Features
+
+* AI Inbox Chat
+* AI Email Summarization
+* AI Reply Generator
+* AI Email Composer
+* Executive Daily Brief
+* Smart Priority Detection
+* Task Extraction
+* Workflow Automation
+
+## AI Provider Architecture
+
+### Primary Provider
+
+* Google Gemini
+
+### Automatic Fallback
+
+* NVIDIA NIM (Llama)
+
+The application automatically switches to NVIDIA NIM whenever Gemini becomes unavailable due to:
+
+* Rate Limits
+* Quota Exhaustion
+* Timeout
+* Temporary Server Errors
+
+---
+
+# Tech Stack
+
+## Frontend
+
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+
+## Backend
+
+* Next.js API Routes
+
+## Database
+
+* Supabase
+
+## Authentication
+
+* Google OAuth
+* NextAuth
+
+## AI
+
+* Google Gemini
+* NVIDIA NIM
+* Retrieval-Augmented Generation (RAG)
+
+---
+
+# Project Structure
+
+```
+app/
+components/
+hooks/
+lib/
+public/
+types/
+```
+
+---
+
+# Installation
+
+Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Create a `.env.local` file and configure:
+
+```
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+NEXTAUTH_SECRET=
+
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+
+GEMINI_API_KEY=
+NVIDIA_NIM_API_KEY=
+```
+
+Run the project
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+# Core Modules
 
-To learn more about Next.js, take a look at the following resources:
+* AI Chat
+* Inbox Management
+* Email Summaries
+* AI Compose
+* AI Reply
+* Executive Dashboard
+* Workflow Automation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Future Enhancements
 
-## Deploy on Vercel
+* Outlook Integration
+* Slack Integration
+* Voice Assistant
+* Mobile Application
+* Team Collaboration
+* Calendar Intelligence
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Author
+
+**Malyala Sohan Gupta**
+
+B.Tech CSE (AI & ML)
+
+Woxsen University
+
+---
+
+# License
+
+MIT License
