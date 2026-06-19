@@ -1,6 +1,6 @@
 # Gmail AI Platform
 
-An AI-powered Gmail productivity platform that combines Gmail integration, Retrieval-Augmented Generation (RAG), AI-powered email assistance, workflow automation, and executive insights into a single modern SaaS application.
+An AI-powered Gmail productivity platform built with **Next.js**, **Supabase**, **Google OAuth**, and **Google Gemini AI**. The platform helps users manage emails intelligently using AI-powered summarization, semantic search, Retrieval-Augmented Generation (RAG), workflow automation, and executive insights through a modern SaaS interface.
 
 ---
 
@@ -13,21 +13,21 @@ An AI-powered Gmail productivity platform that combines Gmail integration, Retri
 
 ## Gmail Integration
 
-* Gmail Sync
+* Gmail Synchronization
 * Inbox Management
 * Thread View
-* Search Emails
+* Email Search
 * Star Emails
 * Archive Emails
 * Delete Emails
-* AI Reply
+* AI Reply Assistance
 
 ## AI Features
 
 * AI Inbox Chat
 * AI Email Summarization
-* AI Reply Generator
 * AI Email Composer
+* AI Reply Generator
 * Executive Daily Brief
 * Smart Priority Detection
 * Task Extraction
@@ -41,13 +41,13 @@ An AI-powered Gmail productivity platform that combines Gmail integration, Retri
 
 ### Automatic Fallback
 
-* NVIDIA NIM (Llama)
+* NVIDIA NIM (Meta Llama)
 
-The application automatically switches to NVIDIA NIM whenever Gemini becomes unavailable due to:
+The application automatically switches to NVIDIA NIM whenever Gemini is unavailable because of:
 
 * Rate Limits
 * Quota Exhaustion
-* Timeout
+* Timeouts
 * Temporary Server Errors
 
 ---
@@ -71,10 +71,10 @@ The application automatically switches to NVIDIA NIM whenever Gemini becomes una
 
 ## Authentication
 
-* Google OAuth
 * NextAuth
+* Google OAuth
 
-## AI
+## AI Stack
 
 * Google Gemini
 * NVIDIA NIM
@@ -84,7 +84,7 @@ The application automatically switches to NVIDIA NIM whenever Gemini becomes una
 
 # Project Structure
 
-```
+```text
 app/
 components/
 hooks/
@@ -97,21 +97,23 @@ types/
 
 # Installation
 
-Clone the repository
+### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/<your-username>/gmail-ai-platform.git
 ```
 
-Install dependencies
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-Create a `.env.local` file and configure:
+### Configure Environment Variables
 
-```
+Create a `.env.local` file.
+
+```env
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 NEXTAUTH_SECRET=
@@ -124,13 +126,19 @@ GEMINI_API_KEY=
 NVIDIA_NIM_API_KEY=
 ```
 
-Run the project
+### Run Development Server
 
 ```bash
 npm run dev
 ```
 
-Production Build
+Open:
+
+```
+http://localhost:3000
+```
+
+### Production Build
 
 ```bash
 npm run build
@@ -141,19 +149,36 @@ npm start
 
 # Core Modules
 
-* AI Chat
-* Inbox Management
+* AI Inbox Chat
+* Gmail Inbox
+* Email Thread View
 * Email Summaries
 * AI Compose
 * AI Reply
 * Executive Dashboard
 * Workflow Automation
+* Semantic Email Search
+
+---
+
+# Architecture
+
+The application follows a modern SaaS architecture consisting of:
+
+* Next.js Frontend
+* Next.js API Routes
+* Supabase Database
+* Google OAuth Authentication
+* Gmail API Integration
+* RAG Pipeline
+* Gemini AI with NVIDIA NIM Automatic Fallback
 
 ---
 
 # Future Enhancements
 
 * Outlook Integration
+* Microsoft 365 Support
 * Slack Integration
 * Voice Assistant
 * Mobile Application
@@ -166,7 +191,7 @@ npm start
 
 **Malyala Sohan Gupta**
 
-B.Tech CSE (AI & ML)
+B.Tech Computer Science & Engineering (AI & ML)
 
 Woxsen University
 
@@ -174,4 +199,4 @@ Woxsen University
 
 # License
 
-MIT License
+This project is developed for educational and technical assessment purposes.
