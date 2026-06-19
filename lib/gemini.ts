@@ -3,13 +3,15 @@
 
 import { GoogleGenAI } from '@google/genai'
 
-const apiKey = process.env.GEMINI_API_KEY
+function getGenAI() {
+  const apiKey = process.env.GEMINI_API_KEY;
 
-if (!apiKey) {
-  throw new Error('GEMINI_API_KEY is not set')
+  if (!apiKey) {
+    throw new Error("GEMINI_API_KEY is not set");
+  }
+
+  return new GoogleGenAI({ apiKey });
 }
-
-const genAI = new GoogleGenAI({ apiKey })
 
 // Text generation model
 export function getGenerativeModel() {
