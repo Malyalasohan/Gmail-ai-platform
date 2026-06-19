@@ -30,5 +30,13 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "debug-gemini-auth.ts",
+    "list-models.ts",
+    "test-*.ts",
+    "test-*.js",
+    "test-*.mjs",
+    "verify-env.js"
+  ]
 }
