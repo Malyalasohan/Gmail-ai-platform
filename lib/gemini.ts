@@ -1,16 +1,23 @@
 // Gemini AI utilities for embeddings and text generation
 // Migrated to @google/genai SDK v2.8.0
 
-import { GoogleGenAI } from '@google/genai'
+import { GoogleGenAI } from "@google/genai";
+
+// Lazy initialization - only create client when actually needed (runtime)
+let genAIInstance: GoogleGenAI | null = null;
 
 function getGenAI() {
-  const apiKey = process.env.GEMINI_API_KEY;
+  if (!genAIInstance) {
+    const apiKey = process.env.GEMINI_API_KEY;
 
-  if (!apiKey) {
-    throw new Error("GEMINI_API_KEY is not set");
+    if (!apiKey) {
+      throw new Error("GEMINI_API_KEY is not set");
+    }
+
+    genAIInstance = new GoogleGenAI({ apiKey });
   }
-
-  return new GoogleGenAI({ apiKey });
+  
+  return genAIInstance;
 }
 
 // Text generation model
@@ -66,7 +73,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
   }
 
   try {
-    const result = await genAI.models.embedContent({
+    const result = await getGenAI().models.embedContent({
       model: 'gemini-embedding-001',
       contents: text,
       config: {
