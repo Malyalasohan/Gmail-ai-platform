@@ -2,23 +2,13 @@
 // Using REST API directly to support AQ.-prefixed authorization keys
 
 // ========== AI PROVIDER CONFIGURATION ==========
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY
-const NVIDIA_NIM_API_KEY = process.env.NVIDIA_NIM_API_KEY
-
-if (!GEMINI_API_KEY) {
-  console.warn('⚠️ GEMINI_API_KEY not configured')
+// Lazy initialization - env vars read only when functions are called
+function getGeminiApiKey(): string | undefined {
+  return process.env.GEMINI_API_KEY
 }
 
-if (!NVIDIA_NIM_API_KEY) {
-  console.warn('⚠️ NVIDIA_NIM_API_KEY not configured - fallback will not work')
-}
-
-// DEBUG: Log API key configuration (first 10 chars only for security)
-if (GEMINI_API_KEY) {
-  console.log('🔐 GEMINI_API_KEY configured:', GEMINI_API_KEY.substring(0, 10) + '...')
-  console.log('🔐 API Key prefix:', GEMINI_API_KEY.substring(0, 3))
-} else {
-  console.log('⚠️ GEMINI_API_KEY is NOT set')
+function getNvidiaApiKey(): string | undefined {
+  return process.env.NVIDIA_NIM_API_KEY
 }
 
 // Gemini REST API endpoints
@@ -90,6 +80,8 @@ export function formatAIError(error: any, provider: 'gemini' | 'nvidia'): string
  * Call NVIDIA NIM API
  */
 async function callNvidiaNIM(prompt: string): Promise<string> {
+  const NVIDIA_NIM_API_KEY = getNvidiaApiKey()
+  
   if (!NVIDIA_NIM_API_KEY) {
     throw new Error('NVIDIA_NIM_API_KEY not configured')
   }
@@ -141,6 +133,8 @@ async function callNvidiaNIM(prompt: string): Promise<string> {
  * Call Gemini REST API directly (supports AQ. authorization keys)
  */
 async function callGeminiAPI(prompt: string): Promise<string> {
+  const GEMINI_API_KEY = getGeminiApiKey()
+  
   if (!GEMINI_API_KEY) {
     throw new Error('GEMINI_API_KEY not configured')
   }
@@ -188,6 +182,8 @@ async function callGeminiAPI(prompt: string): Promise<string> {
  * Call Gemini Embedding API directly (supports AQ. authorization keys)
  */
 async function callGeminiEmbeddingAPI(text: string): Promise<number[]> {
+  const GEMINI_API_KEY = getGeminiApiKey()
+  
   if (!GEMINI_API_KEY) {
     throw new Error('GEMINI_API_KEY not configured')
   }
@@ -258,6 +254,9 @@ export interface AIResponse {
  * 3. If both fail, return error
  */
 export async function generateContent(prompt: string): Promise<AIResponse> {
+  const GEMINI_API_KEY = getGeminiApiKey()
+  const NVIDIA_NIM_API_KEY = getNvidiaApiKey()
+  
   // Try Gemini first
   if (GEMINI_API_KEY) {
     try {
@@ -405,6 +404,8 @@ export async function generateEmbedding(text: string): Promise<number[]> {
   if (!text || !text.trim()) {
     throw new Error('Text cannot be empty')
   }
+  
+  const GEMINI_API_KEY = getGeminiApiKey()
   
   if (!GEMINI_API_KEY) {
     throw new Error('GEMINI_API_KEY not configured - embeddings require Gemini')
