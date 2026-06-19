@@ -164,7 +164,7 @@ export async function safeGenerateContent(
     const context = typeof contextOrOptions === 'string' ? contextOrOptions : undefined
     const fullPrompt = context ? `${context}\n\n${prompt}` : prompt
 
-    const result = await genAI.models.generateContent({
+    const result = await getGenAI().models.generateContent({
       model: 'gemini-2.0-flash-exp',
       contents: fullPrompt,
     })
